@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { ScrollView, TextInput, StyleSheet, Text, View } from 'react-native';
+import {
+	ScrollView,
+	TextInput,
+	StyleSheet,
+	Text,
+	View,
+	KeyboardAvoidingView,
+} from 'react-native';
 import ButtonComponent from '../../components/button/ButtonComponent';
 import { Colors } from '../../constants/constants';
 import { useDispatch } from 'react-redux';
@@ -26,51 +33,63 @@ const AddProductScreen = ({ navigation }) => {
 	};
 
 	return (
-		<ScrollView>
-			<View style={styles.screen}>
-				<View style={styles.form}>
-					<View style={styles.formControl}>
-						<Text style={styles.label}>Title:</Text>
-						<TextInput
-							style={styles.input}
-							value={form.title}
-							onChangeText={(val) => setForm({ ...form, title: val })}
-						/>
-					</View>
-					<View style={styles.formControl}>
-						<Text style={styles.label}>Image Url:</Text>
-						<TextInput
-							style={styles.input}
-							value={form.imageUrl}
-							onChangeText={(val) => setForm({ ...form, imageUrl: val })}
-						/>
-					</View>
-					<View style={styles.formControl}>
-						<Text style={styles.label}>Price:</Text>
-						<TextInput
-							style={styles.input}
-							value={form.price}
-							onChangeText={(val) => setForm({ ...form, price: val })}
-						/>
-					</View>
-					<View style={styles.formControl}>
-						<Text style={styles.label}>Description:</Text>
-						<TextInput
-							style={styles.input}
-							value={form.description}
-							onChangeText={(val) => setForm({ ...form, description: val })}
-						/>
-					</View>
-					<View style={styles.btnDiv}>
-						<ButtonComponent
-							title='Save Product'
-							pressHandler={submitProduct}
-							btnColor={styles.btn}
-						/>
+		<KeyboardAvoidingView
+			style={{ flex: 1 }}
+			behaviour='padding'
+			keyboardVerticalOffset={100}
+		>
+			<ScrollView>
+				<View style={styles.screen}>
+					<View style={styles.form}>
+						<View style={styles.formControl}>
+							<Text style={styles.label}>Title:</Text>
+							<TextInput
+								style={styles.input}
+								value={form.title}
+								onChangeText={(val) => setForm({ ...form, title: val })}
+								keyboardType='default'
+								autoCapitalize='sentence'
+								autoCorrect
+							/>
+						</View>
+						<View style={styles.formControl}>
+							<Text style={styles.label}>Image Url:</Text>
+							<TextInput
+								style={styles.input}
+								value={form.imageUrl}
+								onChangeText={(val) => setForm({ ...form, imageUrl: val })}
+								keyboardType='default'
+							/>
+						</View>
+						<View style={styles.formControl}>
+							<Text style={styles.label}>Price:</Text>
+							<TextInput
+								style={styles.input}
+								value={form.price}
+								onChangeText={(val) => setForm({ ...form, price: val })}
+								keyboardType='decimal-pad'
+							/>
+						</View>
+						<View style={styles.formControl}>
+							<Text style={styles.label}>Description:</Text>
+							<TextInput
+								style={styles.input}
+								value={form.description}
+								onChangeText={(val) => setForm({ ...form, description: val })}
+								keyboardType='default'
+							/>
+						</View>
+						<View style={styles.btnDiv}>
+							<ButtonComponent
+								title='Save Product'
+								pressHandler={submitProduct}
+								btnColor={styles.btn}
+							/>
+						</View>
 					</View>
 				</View>
-			</View>
-		</ScrollView>
+			</ScrollView>
+		</KeyboardAvoidingView>
 	);
 };
 
