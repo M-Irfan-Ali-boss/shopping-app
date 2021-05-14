@@ -6,7 +6,7 @@ const ButtonComponent = ({ title, style, btnColor, pressHandler }) => {
 		<TouchableOpacity
 			style={{ ...styles.btn, ...style, ...btnColor }}
 			onPress={pressHandler}
-			activeOpacity={0.8}
+			activeOpacity={0.5}
 		>
 			<Text
 				style={{

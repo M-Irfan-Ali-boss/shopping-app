@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { Provider } from 'react-redux';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -15,6 +15,7 @@ const fetchedFonts = () =>
 	});
 
 export default function App() {
+	const [loadingGif, setLoadingGif] = useState(true);
 	const [loadFonts, setLoadFonts] = useState(false);
 
 	if (!loadFonts) {
@@ -24,6 +25,21 @@ export default function App() {
 				onFinish={() => setLoadFonts(true)}
 				onError={(err) => console.log(err)}
 			/>
+		);
+	}
+
+	if (loadingGif) {
+		setTimeout(() => {
+			setLoadingGif(false);
+		}, 4000);
+		return (
+			<View style={styles.screenLoading}>
+				<Image
+					style={styles.Loader}
+					resizeMode='contain'
+					source={require('./assets/Loader.gif')}
+				/>
+			</View>
 		);
 	}
 
@@ -41,5 +57,17 @@ export default function App() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	screen: {
+		flex: 1,
+	},
+	screenLoading: {
+		flex: 1,
+		backgroundColor: '#0c0c0c',
+	},
+	Loader: {
+		width: '100%',
+		height: '100%',
+		zIndex: 10,
 	},
 });

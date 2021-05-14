@@ -51,7 +51,6 @@ function ShopNavigator({ navigation }) {
 							/>
 						</View>
 					),
-
 					...headerStyles,
 				})}
 			/>
@@ -60,6 +59,16 @@ function ShopNavigator({ navigation }) {
 				component={ProductDetailScreen}
 				options={({ route }) => ({
 					title: route.params.productTitle,
+					headerRight: () => (
+						<View style={{ paddingRight: 10 }}>
+							<Ionicons
+								name='cart'
+								size={24}
+								onPress={() => navigation.navigate('Cart')}
+								color={Platform.OS === 'android' ? 'white' : Colors.primary}
+							/>
+						</View>
+					),
 					...headerStyles,
 				})}
 			/>

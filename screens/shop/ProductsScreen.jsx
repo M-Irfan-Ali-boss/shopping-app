@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, FlatList, View } from 'react-native';
+import { StyleSheet, FlatList, View, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import ProductItem from '../../components/shop/ProductItem';
@@ -42,7 +42,12 @@ const ProductsScreen = ({ navigation }) => {
 							<ButtonComponent
 								title='To Cart'
 								btnColor={styles.btn2}
-								pressHandler={() => dispatch(addToCart(itemData.item))}
+								pressHandler={() => {
+									Alert.alert('Add to cart!', 'Product added successfully!', [
+										{ text: 'Okay', style: 'default' },
+									]);
+									dispatch(addToCart(itemData.item));
+								}}
 							/>
 						</ProductItem>
 					)}

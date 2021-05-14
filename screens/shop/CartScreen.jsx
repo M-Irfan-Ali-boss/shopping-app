@@ -59,14 +59,19 @@ const CartScreen = () => {
 						<ButtonComponent
 							title='Order Now'
 							btnColor={styles.btn}
-							pressHandler={() =>
+							pressHandler={() => {
+								Alert.alert(
+									'Order!',
+									'Your ordered has been added successfully!',
+									[{ text: 'Okay', style: 'default' }]
+								);
 								dispatch(
 									addOrder({
 										items: cart.cartItems,
 										amount: cart.totalAmount,
 									})
-								)
-							}
+								);
+							}}
 						/>
 					</View>
 					{cartItems.length > 0 ? (

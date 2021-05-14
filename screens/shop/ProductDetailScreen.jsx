@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, ScrollView, View, Image } from 'react-native';
+import { StyleSheet, Text, ScrollView, View, Image, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import ButtonComponent from '../../components/button/ButtonComponent';
 import { Colors } from '../../constants/constants';
@@ -20,7 +20,12 @@ const ProductDetailScreen = ({ route }) => {
 					style={styles.btnDiv}
 					btnColor={styles.btn}
 					title='Add To Card'
-					pressHandler={() => dispatch(addToCart(product))}
+					pressHandler={() => {
+						Alert.alert('Add to cart!', 'Product added successfully!', [
+							{ text: 'Okay', style: 'default' },
+						]);
+						dispatch(addToCart(product));
+					}}
 				/>
 			</View>
 			<Text style={styles.price}>${product.price}</Text>
